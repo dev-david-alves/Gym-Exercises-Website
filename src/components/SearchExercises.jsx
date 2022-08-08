@@ -1,9 +1,38 @@
 import React, { useState } from "react";
 
 import { Box, Stack, Typography, TextField, Button } from "@mui/material";
+import { fetchData, options } from "../utils/fetchData";
 
 const SearchExercises = () => {
-    const [exercise, setExercise] = useState("");
+    const [searchedExercise, setSearchedExercise] = useState("");
+    const [exercises, setExercises] = useState([]);
+
+    const handleSearch = async () => {
+        if (searchedExercise.length > 0) {
+            const allExercises = await fetchData(
+                "https://exercisedb.p.rapidapi.com/exercises",
+                options
+            );
+            const filteredExercises = allExercises.filter(
+                (exercise) =>
+                    exercise.name
+                        .toLowerCase()
+                        .includes(searchedExercise.toLowerCase()) ||
+                    exercise.target
+                        .toLowerCase()
+                        .includes(searchedExercise.toLowerCase()) ||
+                    exercise.equipment
+                        .toLowerCase()
+                        .includes(searchedExercise.toLowerCase()) ||
+                    exercise.bodyPart
+                        .toLowerCase()
+                        .includes(searchedExercise.toLowerCase())
+            );
+
+            setExercises(filteredExercises);
+            setSearchedExercise("");
+        }
+    };
 
     return (
         <Box>
@@ -35,8 +64,8 @@ const SearchExercises = () => {
                     <TextField
                         variant="outlined"
                         placeholder="Search for exercises"
-                        value={exercise}
-                        onChange={(e) => setExercise(e.target.value)}
+                        value={searchedExercise}
+                        onChange={(e) => setSearchedExercise(e.target.value)}
                         sx={{
                             width: "100%",
                         }}
@@ -48,6 +77,7 @@ const SearchExercises = () => {
                             width: "200px",
                             height: "55px",
                         }}
+                        onClick={handleSearch}
                     >
                         Search
                     </Button>
