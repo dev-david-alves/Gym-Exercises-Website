@@ -3,9 +3,14 @@ import React, { useState } from "react";
 import { Box, Stack, Typography, TextField, Button } from "@mui/material";
 import { fetchData, options } from "../utils/fetchData";
 
+import BodyPartCard from "./BodyPartCard";
+
+import { useExercisesContext } from "../providers/exerciseProvider";
+
 const SearchExercises = () => {
     const [searchedExercise, setSearchedExercise] = useState("");
-    const [exercises, setExercises] = useState([]);
+
+    const { exercises, setExercises, bodyParts } = useExercisesContext();
 
     const handleSearch = async () => {
         if (searchedExercise.length > 0) {
@@ -82,6 +87,20 @@ const SearchExercises = () => {
                         Search
                     </Button>
                 </Stack>
+            </Stack>
+            <Stack
+                justifyContent="center"
+                alignItems="center"
+                position="relative"
+                p="20px 40px"
+                direction="row"
+                sx={{
+                    flexWrap: "wrap",
+                }}
+            >
+                {bodyParts.map((bodyPart) => (
+                    <BodyPartCard key={bodyPart} bodyPart={bodyPart} />
+                ))}
             </Stack>
         </Box>
     );
