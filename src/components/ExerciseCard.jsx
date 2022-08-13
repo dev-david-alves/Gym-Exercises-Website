@@ -6,9 +6,8 @@ const ExerciseCard = ({ exercise }) => {
     return (
         <Stack
             width="300px"
-            height="500px"
+            pb="40px"
             textAlign="center"
-            justifyContent="center"
             alignItems="center"
             sx={{
                 borderRadius: "20px",
@@ -22,7 +21,6 @@ const ExerciseCard = ({ exercise }) => {
                     width: "100%",
                     height: "auto",
                     borderRadius: "20px",
-                    margin: "0",
                 }}
             />
             <Typography
@@ -42,6 +40,7 @@ const ExerciseCard = ({ exercise }) => {
                 sx={{
                     gap: "10px",
                 }}
+                direction="row"
             >
                 <Button variant="contained" color="error" size="small">
                     {exercise.target}

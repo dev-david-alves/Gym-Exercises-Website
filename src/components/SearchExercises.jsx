@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Box, Stack, Typography, TextField, Button } from "@mui/material";
 import { fetchData, options } from "../utils/fetchData";
@@ -10,7 +10,7 @@ import { useExercisesContext } from "../providers/exerciseProvider";
 const SearchExercises = () => {
     const [searchedExercise, setSearchedExercise] = useState("");
 
-    const { exercises, setExercises, bodyParts } = useExercisesContext();
+    const { setExercises, bodyParts } = useExercisesContext();
 
     const handleSearch = async () => {
         if (searchedExercise.length > 0) {
@@ -99,7 +99,11 @@ const SearchExercises = () => {
                 }}
             >
                 {bodyParts.map((bodyPart) => (
-                    <BodyPartCard key={bodyPart} bodyPart={bodyPart} />
+                    <BodyPartCard
+                        key={bodyPart}
+                        bodyPart={bodyPart}
+                        setSearchedExercise={setSearchedExercise}
+                    />
                 ))}
             </Stack>
         </Box>
