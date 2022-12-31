@@ -25,21 +25,24 @@ const CardSection = () => {
     };
 
     return (
-        <Stack alignItems="center" justifyContent="center" mt="50px">
+        <Stack alignItems="center" justifyContent="center" my="30px">
             <Typography
                 variant="h3"
                 sx={{
-                    marginBottom: "50px",
+                    fontSize: { xs: "20px", lg: "30px" },
+                    marginBottom: { xs: "15px", lg: "30px" },
                     fontWeight: "bold",
-                    fontSize: "30px",
+                    color: "#ffffff",
                 }}
+                textAlign="center"
             >
-                Here is the best exercises for your workout: {exercises.length}{" "}
+                Here is the best exercises for your workout:{" "}
+                <span style={{ color: "red" }}>{exercises.length} </span>
                 results Found
             </Typography>
 
             <Stack
-                alignItems="center"
+                alignItems="start"
                 justifyContent="center"
                 direction="row"
                 sx={{
@@ -55,9 +58,10 @@ const CardSection = () => {
             </Stack>
             <Pagination
                 count={Math.ceil(exercises.length / itemsPerPage)}
-                defaultPage={1}
                 size="large"
                 onChange={handleChange}
+                color="primary"
+                variant="outlined"
             />
         </Stack>
     );

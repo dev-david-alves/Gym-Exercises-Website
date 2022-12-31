@@ -1,23 +1,25 @@
 import React from "react";
 import { Box, Stack, Typography, Button } from "@mui/material";
-import HeroBanner from "../assets/images/banner.png";
+import HeroBanner from "../assets/images/banner.jpg";
 
 const WelcomeSection = () => {
     return (
         <Box>
             <Stack
                 sx={{
-                    p: { xs: "20px", lg: "100px" },
+                    px: { xs: "50px", lg: "110px" },
+                    py: { xs: "20px", lg: "40px" },
+                    alignItems: { xs: "center", lg: "flex-start" },
+                    textAlign: { xs: "center", lg: "left" },
                 }}
             >
                 <Typography
                     variant="h1"
                     sx={{
-                        marginBottom: "20px",
+                        marginBottom: "5px",
                         fontWeight: "bold",
                         fontSize: "18px",
-                        color: "#ce1212",
-                        marginTop: "20px",
+                        color: "#ECB365",
                     }}
                 >
                     Fitness Club
@@ -25,11 +27,10 @@ const WelcomeSection = () => {
                 <Typography
                     variant="h2"
                     sx={{
-                        marginBottom: "20px",
+                        marginBottom: "10px",
                         fontWeight: "bold",
                         fontSize: "35px",
-                        color: "#000000",
-                        marginTop: "20px",
+                        color: "#ffffff",
                     }}
                 >
                     Sweet, Smile
@@ -37,9 +38,9 @@ const WelcomeSection = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        marginBottom: "20px",
+                        marginBottom: "10px",
                         fontSize: "16px",
-                        color: "#1f1f1f",
+                        color: "gray",
                     }}
                 >
                     Check out the most effective exercises personalised to you.
@@ -50,6 +51,8 @@ const WelcomeSection = () => {
                     sx={{
                         marginTop: "20px",
                         maxWidth: "200px",
+                        height: "40px",
+                        borderRadius: "20px",
                     }}
                 >
                     Explore Exercises
@@ -59,11 +62,11 @@ const WelcomeSection = () => {
                     color="error"
                     sx={{
                         fontWeight: "bold",
-                        fontSize: { sm: "100px", lg: "200px" },
+                        fontSize: { sm: "85px", lg: "170px" },
                         letterSpacing: "20px",
-                        marginTop: "-20px",
-                        opacity: "0.2",
-                        display: { sm: "none", md: "block" },
+                        marginTop: "-10px",
+                        opacity: "0.3",
+                        display: { xs: "none", md: "block" },
                     }}
                 >
                     Exercise

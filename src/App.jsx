@@ -1,5 +1,5 @@
-import { Box } from "@mui/system";
 import React from "react";
+import { Box } from "@mui/system";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";

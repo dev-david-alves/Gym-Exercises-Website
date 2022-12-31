@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 import { Box, Stack, Typography, TextField, Button } from "@mui/material";
-import { fetchData, options } from "../utils/fetchData";
+import { fetchData, exerciseOptions } from "../utils/fetchData";
 
 import BodyPartCard from "./BodyPartCard";
 
 import { useExercisesContext } from "../providers/exerciseProvider";
+import HorizontalScrollBar from "./HorizontalScrollBar";
+import Loader from "./Loader";
 
 const SearchExercises = () => {
     const [searchedExercise, setSearchedExercise] = useState("");
 
-    const { setExercises, bodyParts } = useExercisesContext();
+    const { setExercises, exercises, bodyParts } = useExercisesContext();
 
     const handleSearch = async () => {
         if (searchedExercise.length > 0) {
             const allExercises = await fetchData(
                 "https://exercisedb.p.rapidapi.com/exercises",
-                options
+                exerciseOptions
             );
             const filteredExercises = allExercises.filter(
                 (exercise) =>
@@ -39,8 +41,15 @@ const SearchExercises = () => {
         }
     };
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 900,
+            behavior: "smooth",
+        });
+    }, [exercises]);
+
     return (
-        <Box>
+        <Box id="exercises-section">
             <Stack
                 alignItems="center"
                 justifyContent="center"
@@ -51,9 +60,11 @@ const SearchExercises = () => {
                 <Typography
                     variant="h3"
                     sx={{
-                        marginBottom: "20px",
+                        marginTop: { xs: "20px", lg: "0px" },
+                        marginBottom: { xs: "15px", lg: "20px" },
                         fontWeight: "bold",
-                        fontSize: "26px",
+                        fontSize: { xs: "16px", lg: "26px" },
+                        color: "#ffffff",
                     }}
                 >
                     The best place to find good exercises for you.
@@ -66,13 +77,21 @@ const SearchExercises = () => {
                         width: "80%",
                     }}
                 >
-                    <TextField
-                        variant="outlined"
+                    <input
                         placeholder="Search for exercises"
+                        type="text"
                         value={searchedExercise}
                         onChange={(e) => setSearchedExercise(e.target.value)}
-                        sx={{
+                        style={{
+                            color: "#ffffff",
+                            background: "transparent",
                             width: "100%",
+                            height: "40px",
+                            fontSize: "16px",
+                            outline: "none",
+                            border: "2px solid #ffffff",
+                            borderRadius: "20px 0px 0px 20px",
+                            padding: "0px 20px",
                         }}
                     />
                     <Button
@@ -80,7 +99,11 @@ const SearchExercises = () => {
                         color="error"
                         sx={{
                             width: "200px",
-                            height: "55px",
+                            height: "40px",
+                            borderRadius: "0px 20px 20px 0px",
+                            boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+                            border: "2px solid #ffffff",
+                            borderLeft: "none",
                         }}
                         onClick={handleSearch}
                     >
@@ -88,24 +111,15 @@ const SearchExercises = () => {
                     </Button>
                 </Stack>
             </Stack>
-            <Stack
-                justifyContent="center"
-                alignItems="center"
-                position="relative"
-                p="20px 40px"
-                direction="row"
-                sx={{
-                    flexWrap: "wrap",
-                }}
-            >
-                {bodyParts.map((bodyPart) => (
-                    <BodyPartCard
-                        key={bodyPart}
-                        bodyPart={bodyPart}
-                        setSearchedExercise={setSearchedExercise}
-                    />
-                ))}
-            </Stack>
+            {!bodyParts.length ? (
+                <Loader />
+            ) : (
+                <HorizontalScrollBar length={bodyParts.length}>
+                    {bodyParts.map((bodyPart) => (
+                        <BodyPartCard key={bodyPart} bodyPart={bodyPart} />
+                    ))}
+                </HorizontalScrollBar>
+            )}
         </Box>
     );
 };

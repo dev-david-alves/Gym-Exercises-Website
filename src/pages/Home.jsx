@@ -7,7 +7,7 @@ import CardSection from "../components/CardSection";
 
 import { ExerciseProvider } from "../providers/exerciseProvider";
 
-import { fetchData, options } from "../utils/fetchData";
+import { fetchData, exerciseOptions } from "../utils/fetchData";
 
 const Home = () => {
     const [exercises, setExercises] = useState([]);
@@ -17,7 +17,7 @@ const Home = () => {
         const fetchBodyParts = async () => {
             const bodyPartsList = await fetchData(
                 "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-                options
+                exerciseOptions
             );
 
             setBodyParts(["all", ...bodyPartsList]);

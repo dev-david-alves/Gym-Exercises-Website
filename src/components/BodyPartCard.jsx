@@ -1,10 +1,10 @@
 import React from "react";
-import GymImage from "../assets/icons/gym.png";
+import DumbbellImage from "../assets/icons/dumbbell.png";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 import { useExercisesContext } from "../providers/exerciseProvider";
-import { fetchData, options } from "../utils/fetchData";
+import { fetchData, exerciseOptions } from "../utils/fetchData";
 
 const ExerciseCard = ({ bodyPart }) => {
     const { setExercises } = useExercisesContext();
@@ -12,8 +12,9 @@ const ExerciseCard = ({ bodyPart }) => {
     const handleSearch = async () => {
         const allExercises = await fetchData(
             "https://exercisedb.p.rapidapi.com/exercises",
-            options
+            exerciseOptions
         );
+
         const filteredExercises = allExercises.filter(
             (exercise) =>
                 exercise.name.toLowerCase().includes(bodyPart.toLowerCase()) ||
@@ -30,39 +31,38 @@ const ExerciseCard = ({ bodyPart }) => {
     };
 
     return (
-        <Box
-            m="10px"
+        <Button
             sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "180px",
-                height: "180px",
-                backgroundColor: "#e6e6e6",
+                minWidth: "150px",
+                minHeight: "150px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
                 cursor: "pointer",
-                borderRadius: "10px",
-                backgroundColor: "white",
-                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                margin: "0px 10px",
             }}
             onClick={handleSearch}
         >
             <img
-                src={GymImage}
+                src={DumbbellImage}
                 alt="gym"
-                style={{ width: "60px", height: "auto" }}
+                style={{ width: "40%", height: "auto" }}
             />
             <Typography
-                mt="10px"
+                mt="5px"
                 sx={{
-                    fontSize: "20px",
+                    fontSize: "14px",
                     fontWeight: "bold",
-                    color: "black",
+                    color: "#ffffff",
                 }}
             >
                 {bodyPart}
             </Typography>
-        </Box>
+        </Button>
     );
 };
 

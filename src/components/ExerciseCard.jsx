@@ -1,55 +1,95 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Stack, Typography, Button } from "@mui/material";
 
 const ExerciseCard = ({ exercise }) => {
     return (
-        <Stack
-            width="300px"
-            pb="40px"
-            textAlign="center"
-            alignItems="center"
-            sx={{
-                borderRadius: "20px",
-                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-            }}
+        <Link
+            to={`/exercises/${exercise.id}`}
+            style={{ textDecoration: "none", color: "#000000" }}
         >
-            <img
-                src={exercise.gifUrl}
-                alt={exercise.name}
-                style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "20px",
-                }}
-            />
-            <Typography
-                variant="h5"
-                mt="20px"
-                sx={{
-                    marginBottom: "20px",
-                    fontSize: "20px",
-                }}
-            >
-                {exercise.name}
-            </Typography>
             <Stack
-                spacing="2"
+                width="300px"
+                height="460px"
+                p="10px"
+                textAlign="center"
                 alignItems="center"
-                justifyContent="space-between"
                 sx={{
-                    gap: "10px",
+                    borderRadius: "20px",
+                    backgroundColor: "rgba(0, 0, 0, 0.6)",
+                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                        backgroundColor: "#191D21",
+                    },
                 }}
-                direction="row"
             >
-                <Button variant="contained" color="error" size="small">
-                    {exercise.target}
-                </Button>
-                <Button variant="contained" color="primary" size="small">
-                    {exercise.equipment}
-                </Button>
+                <img
+                    src={exercise.gifUrl}
+                    alt={exercise.name}
+                    style={{
+                        width: "100%",
+                        height: "auto",
+                        borderRadius: "20px",
+                    }}
+                />
+                <Typography
+                    variant="h5"
+                    m="20px"
+                    sx={{
+                        fontSize: "16px",
+                        color: "#ffffff",
+                        width: "250px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                    }}
+                >
+                    {exercise.name}
+                </Typography>
+                <Stack
+                    width="80%"
+                    spacing="2"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    direction="column"
+                    gap="10px"
+                >
+                    <Button
+                        variant="outlined"
+                        width="100%"
+                        height="30px"
+                        sx={{
+                            fontSize: "14x",
+                            color: "#ffffff",
+                            width: "100%",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {exercise.target}
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        width="100%"
+                        height="30px"
+                        color="warning"
+                        sx={{
+                            fontSize: "14x",
+                            color: "#ffffff",
+                            width: "100%",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {exercise.equipment}
+                    </Button>
+                </Stack>
             </Stack>
-        </Stack>
+        </Link>
     );
 };
 
