@@ -1,7 +1,8 @@
 # Gym Exercises Website
 
 ## About the projetct
-This project is a website that shows to the user some exercises to do in the gym. The user can filter the exercises by a lot of categories, like: muscle group, equipment, difficulty, etc. The user can also see the details of each exercise, like: how to do it, the muscles that will be worked, the equipment needed, and find similar exercises and YouTube videos about the exercise.
+This project is a website that consume an API and shows to the user some exercises to do in the gym. The user can filter the exercises by a lot of categories, like: muscle group, equipment, difficulty, etc. The user can also see the details of each exercise, like: how to do it, the muscles that will be worked, the equipment needed, and find similar exercises and YouTube videos about the exercise.
+ 
 
 ## Technologies used in this project 
 
@@ -15,6 +16,7 @@ This project is a website that shows to the user some exercises to do in the gym
 
 * Git and Github
 * Vite 3.0.0
+* RapidAPI - ExerciseDB API
 
 ## How to run the project
 
